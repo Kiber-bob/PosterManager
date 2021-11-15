@@ -32,8 +32,7 @@ public class PosterManager {
         int filmCount = films.length;
         if ((resultLength < films.length) && (posterLength == 0)) {
             filmCount = resultLength;
-        }
-        else if ((posterLength > 0) && (posterLength < films.length)) {
+        } else if ((posterLength > 0) && (posterLength < films.length)) {
             filmCount = posterLength;
         }
         FilmsPoster[] result = new FilmsPoster[filmCount];

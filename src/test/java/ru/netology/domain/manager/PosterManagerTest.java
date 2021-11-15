@@ -1,13 +1,12 @@
 package ru.netology.domain.manager;
 
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.FilmsPoster;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PosterManagerTest {
-
     PosterManager manager = new PosterManager();
 
     FilmsPoster first = new FilmsPoster(1, "first", "comedy", 10);
@@ -21,11 +20,13 @@ class PosterManagerTest {
     FilmsPoster ninth = new FilmsPoster(9, "ninth", "comedy", 23);
     FilmsPoster tenth = new FilmsPoster(10, "tenth", "comedy", 12);
     FilmsPoster eleventh = new FilmsPoster(11, "eleventh", "comedy", 13);
+    FilmsPoster twelfth = new FilmsPoster(12, "twelfth", "comedy", 14);
+    FilmsPoster thirteenth = new FilmsPoster(13, "thirteenth", "comedy", 15);
 
 
     @Test
     public void showInReverseOrder10() {// Показать в обратном порядке 10 последних
-        PosterManager manager = new PosterManager();
+        PosterManager manager = new PosterManager(10);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -37,7 +38,6 @@ class PosterManagerTest {
         manager.add(ninth);
         manager.add(tenth);
         manager.add(eleventh);
-
         FilmsPoster[] actual = manager.getLastFilms();
         FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
@@ -52,14 +52,15 @@ class PosterManagerTest {
         manager.add(fourth);
         manager.add(fifth);
         manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
         FilmsPoster[] actual = manager.getLastFilms();
         FilmsPoster[] expected = new FilmsPoster[]{fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void showInReverseOrder() {// Показать в обратном порядке сколько добавлено
-        PosterManager manager = new PosterManager();
+    public void showInReverseOrder() {// Показать в обратном порядке меньше лимита
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -83,9 +84,68 @@ class PosterManagerTest {
         manager.add(sixth);
         manager.add(seventh);
         manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        manager.add(twelfth);
         FilmsPoster[] actual = manager.getLastFilms();
-        FilmsPoster[] expected = new FilmsPoster[]{eighth, seventh, sixth, fifth, fourth, third, second, first};
+        FilmsPoster[] expected = new FilmsPoster[]{twelfth, eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
+    }
 
+    @Test
+    public void showInTenReverse() { // Показать в обратном порядке 10 добавленных фильмов
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        FilmsPoster[] actual = manager.getLastFilms();
+        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shownInMoreLimit() { // Показать в обратном порядке 10 последних, когда добавлено 13 фильмов
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        manager.add(twelfth);
+        manager.add(thirteenth);
+        FilmsPoster[] actual = manager.getLastFilms();
+        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void showInReverseWithCustomLength0() { // Показать в обратном порядке, когда длина лимита 0
+        PosterManager manager = new PosterManager(0);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        FilmsPoster[] actual = manager.getLastFilms();
+        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        assertArrayEquals(expected, actual);
     }
 }
