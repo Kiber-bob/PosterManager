@@ -39,7 +39,7 @@ class PosterManagerTest {
         manager.add(tenth);
         manager.add(eleventh);
         FilmsPoster[] actual = manager.getLastFilms();
-        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        FilmsPoster[] expected = new FilmsPoster[]{eleventh,tenth, ninth, eighth, seventh, sixth, fifth, fourth, third,second};
         assertArrayEquals(expected, actual);
     }
 
@@ -54,8 +54,9 @@ class PosterManagerTest {
         manager.add(sixth);
         manager.add(seventh);
         manager.add(eighth);
+        manager.add(ninth);
         FilmsPoster[] actual = manager.getLastFilms();
-        FilmsPoster[] expected = new FilmsPoster[]{fifth, fourth, third, second, first};
+        FilmsPoster[] expected = new FilmsPoster[]{ninth,eighth,seventh,sixth,fifth};
         assertArrayEquals(expected, actual);
     }
 
@@ -126,7 +127,7 @@ class PosterManagerTest {
         manager.add(twelfth);
         manager.add(thirteenth);
         FilmsPoster[] actual = manager.getLastFilms();
-        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        FilmsPoster[] expected = new FilmsPoster[]{thirteenth,twelfth,eleventh,tenth, ninth, eighth, seventh, sixth, fifth, fourth};
         assertArrayEquals(expected, actual);
     }
 
@@ -145,7 +146,7 @@ class PosterManagerTest {
         manager.add(tenth);
         manager.add(eleventh);
         FilmsPoster[] actual = manager.getLastFilms();
-        FilmsPoster[] expected = new FilmsPoster[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        FilmsPoster[] expected = new FilmsPoster[]{eleventh,tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 }

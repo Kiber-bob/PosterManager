@@ -29,17 +29,17 @@ public class PosterManager {
     }
 
     public FilmsPoster[] getLastFilms() {
-        int filmCount = films.length;
+        int filmCount = films.length; ;
         if ((resultLength < films.length) && (posterLength == 0)) {
             filmCount = resultLength;
         } else if ((posterLength > 0) && (posterLength < films.length)) {
             filmCount = posterLength;
         }
         FilmsPoster[] result = new FilmsPoster[filmCount];
-        for (int i = 0; i < filmCount; i++) {
-            int index = filmCount - 1 -i;
+        for (int i = 0; i < filmCount ; i++) {
+            int index = films.length - i - 1;
             result[i] = films[index];
         }
-        return result;
+        return result ;
     }
 }
